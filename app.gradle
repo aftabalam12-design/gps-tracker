@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.location_share"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        def sid = project.hasProperty("twilioAccountSid") ? project.property("twilioAccountSid") : ""
+        def token = project.hasProperty("twilioAuthToken") ? project.property("twilioAuthToken") : ""
+        def fromNum = project.hasProperty("twilioFromNumber") ? project.property("twilioFromNumber") : ""
+
+        buildConfigField "String", "TWILIO_ACCOUNT_SID", "\"${sid}\""
+        buildConfigField "String", "TWILIO_AUTH_TOKEN", "\"${token}\""
+        buildConfigField "String", "TWILIO_FROM_NUMBER", "\"${fromNum}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.0"
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.twilio.sdk:twilio:8.33.0'
+}
