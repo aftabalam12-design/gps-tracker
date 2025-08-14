@@ -1,2 +1,8 @@
-# gps-tracker
-the apk app will get the current location of mobile and save in text file and send it to whatsapp number
+# location-share
+
+This Android app captures your device's location every minute and sends it to a specified WhatsApp number using Twilio.
+
+## Setup
+
+1. Clone the repo.  
+2. In the project root, create `local.properties` with:
